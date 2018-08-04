@@ -5,18 +5,32 @@ var velocity = Vector3()
 
 var gravity = -9.8 * 3
 const WALK_SPEED = 20
-const ACCL = 7
-const DECCL = 15
+const ACCL = 15
+const DECCL = 25
+const AIR_RESISTANCE = 0.9
+
+#used to determine if the creature is just above ground
+var tail_touching = false
 
 func _ready():
 	pass
 
 func _physics_process(delta):
+		
+	if is_on_floor():
+		tail_touching = true
+	else:
+		if !$Tail.is_colliding():
+			tail_touching = false
+		
+	if (tail_touching and !is_on_floor()):
+		move_and_collide(Vector3(0,-1,0))
+		
 	#walk will read the players keypresses and change the velocity
-	walk(delta)
+	if tail_touching: walk(delta)
 	
-	#add gravity
-	velocity.y += gravity * delta
+	#apply other forces
+	forces(delta)
 	
 	velocity = move_and_slide(velocity, Vector3(0,1,0))
 	
@@ -55,5 +69,22 @@ func walk(delta):
 	#decide where I would like to go
 	var desired_velocity = direction * WALK_SPEED
 	
-	#change velocity accordingly
-	velocity = velocity.linear_interpolate(desired_velocity, acceleration*delta)
+	#change velocity accordingly (but ensure we don't effect y value)
+	velocity.x = velocity.linear_interpolate(desired_velocity, acceleration*delta).x
+	velocity.z = velocity.linear_interpolate(desired_velocity, acceleration*delta).z
+	
+#this function does air resistance and gravity
+func forces(delta):
+	#add gravity	
+	velocity.y += gravity * delta
+	
+	#add air resistance
+	
+	#air resistance doesn't apply on ground
+	#air resistance doesn't effect gravity as much
+	if !tail_touching:
+		velocity.x = velocity.x*AIR_RESISTANCE
+		velocity.z = velocity.z*AIR_RESISTANCE
+	
+	
+	

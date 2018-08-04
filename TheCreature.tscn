@@ -125,4 +125,13 @@ near = 0.05
 far = 100.0
 _sections_unfolded = [ "Transform" ]
 
+[node name="Tail" type="RayCast" parent="." index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000380993, -0.983157, -0.000522614 )
+enabled = true
+exclude_parent = true
+cast_to = Vector3( 0, -1, 0 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
 
