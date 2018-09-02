@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 ui_custom_restart=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 
+[layer_names]
+
+3d_render/layer_2="ViewLight"
+"3d_render/Layer 2"=false
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

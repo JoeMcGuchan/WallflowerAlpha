@@ -6,7 +6,7 @@ var velocity = Vector3()
 var gravity = -9.8 * 3
 const WALK_SPEED = 20
 const ACCL = 15
-const DECCL = 25
+const DECCL = 50
 const AIR_RESISTANCE = 0.9
 
 #used to determine if the creature is just above ground
@@ -85,6 +85,3 @@ func forces(delta):
 	if !tail_touching:
 		velocity.x = velocity.x*AIR_RESISTANCE
 		velocity.z = velocity.z*AIR_RESISTANCE
-	
-	
-	

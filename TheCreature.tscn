@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleShape" id=1]
 
 radius = 0.6
-height = 1.5
+height = 0.4
 _sections_unfolded = [ "Resource" ]
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -65,11 +65,11 @@ _sections_unfolded = [ "Albedo", "Ambient Occlusion", "Anisotropy", "Clearcoat",
 material = SubResource( 2 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 radius = 0.6
-mid_height = 1.5
+mid_height = 0.4
 radial_segments = 64
 rings = 8
 
-[node name="TheCreature" type="KinematicBody" index="0"]
+[node name="TheCreature" type="KinematicBody"]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -108,26 +108,9 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "material" ]
 
-[node name="Camera" type="Camera" parent="." index="2"]
+[node name="Tail" type="RayCast" parent="." index="2"]
 
-transform = Transform( -1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 0, 11.1772, 0 )
-keep_aspect = 1
-cull_mask = 1048575
-environment = null
-h_offset = 0.0
-v_offset = 0.0
-doppler_tracking = 0
-projection = 0
-current = false
-fov = 70.0
-size = 1.0
-near = 0.05
-far = 100.0
-_sections_unfolded = [ "Transform" ]
-
-[node name="Tail" type="RayCast" parent="." index="3"]
-
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000380993, -0.983157, -0.000522614 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000380993, -0.632636, -0.000522614 )
 enabled = true
 exclude_parent = true
 cast_to = Vector3( 0, -1, 0 )
